@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-2p(dvdjv-g_2=4f)3y$8o3ykcyun=&d-v0+16v%e(g4zgus^-z')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ and 'RAILWAY_ENVIRONMENT_NAME' not in os.environ
+DEBUG = 'RENDER' not in os.environ and 'RAILWAY_ENVIRONMENT_NAME' not in os.environ and 'VERCEL' not in os.environ
 
 ALLOWED_HOSTS = ['*'] 
 
@@ -40,6 +40,10 @@ RAILWAY_PUBLIC_DOMAIN = os.environ.get('RAILWAY_PUBLIC_DOMAIN')
 if RAILWAY_PUBLIC_DOMAIN:
     ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
     CSRF_TRUSTED_ORIGINS = [f'https://{RAILWAY_PUBLIC_DOMAIN}']
+
+# Vercel Hostname
+ALLOWED_HOSTS.append('.vercel.app')
+
 
 
 # Application definition
@@ -140,9 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-if not DEBUG:
-    STATIC_ROOT = BASE_DIR / 'staticfiles'
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [

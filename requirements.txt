@@ -1,8 +1,20 @@
-django>=4.2
+# Web Framework
+Django>=4.2,<6.0
 djangorestframework
 django-cors-headers
 djangorestframework-simplejwt
+
+# Server / Deployment
 gunicorn
 dj-database-url
 psycopg2-binary
 whitenoise
+
+# Utilities
+requests
+python-dotenv
+pillow
+
+# NOTE: Heavy ML libraries (torch, transformers) from your local environment
+# are EXCLUDED because they exceed Vercel's 250MB serverless limit.
+# If you need them, you must use a container service like Railway/Koyeb.
