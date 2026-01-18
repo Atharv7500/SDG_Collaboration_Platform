@@ -146,6 +146,6 @@ This platform supports social good by:
 
 ---
 
-## ☁️ Deployment Architecture
+
 
 
