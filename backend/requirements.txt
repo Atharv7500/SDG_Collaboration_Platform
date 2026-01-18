@@ -2,3 +2,8 @@ django>=4.2
 djangorestframework
 django-cors-headers
 djangorestframework-simplejwt
+
+gunicorn
+dj-database-url
+psycopg2-binary
+whitenoise

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: sdg-backend
+    runtime: python
+    buildCommand: "./backend/build.sh"
+    startCommand: "cd backend && gunicorn sdg_backend.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+    root: .
